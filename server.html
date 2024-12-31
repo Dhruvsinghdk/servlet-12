@@ -1,0 +1,33 @@
+package abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Jdmc1 {
+
+	static final String dburl = "jdbc:mysql://localhost/india";
+	static final String user = "root";
+	static final String pass = "sourness";
+	
+	public static void main(String[] args) throws SQLException {
+		
+		Connection con = null;
+		Statement stm = null;
+		
+		System.out.println("Database connecting..");
+		con = DriverManager.getConnection(dburl,user,pass);
+		
+		stm = con.createStatement();
+		System.out.println("Creating database...");
+//		String sql = "create database india";
+//		String sql = "create table student(id int primary key, name varchar(50), city varchar(60))";
+		String sql = "insert into student(id,name,city) values (1, 'amit', 'jabalpur'),(2,'rohit','new delhi')";
+		stm.executeUpdate(sql);
+		
+		System.out.println("table created");
+
+	}
+
+}
